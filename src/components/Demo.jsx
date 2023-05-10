@@ -88,7 +88,7 @@ const Demo = () => {
                         className='object-contain'
                       />
                     </div>
-                      <p>
+                      <p className='flex-1 font-satoshi text-blue-700 font-medium text-sm truncate'>
                         {item.url}
                       </p>
                   </div>
@@ -97,6 +97,30 @@ const Demo = () => {
         </div>
 
         {/* Display Results */}
+        <div className='my-10 max-w-full flex justify-center items-center'>
+            {isFetching ? (
+              <img src={loader} alt='loader' className='w-20 h-20 object-contain'/>
+            ) : error ? (
+              <p className='font-inter font-bold text-black text-center'>
+                Well, that wasn't supposed to happen...
+                <br />
+                <span className='font-satoshi font-normal text-gray-700'>
+                  {error?.data?.error}
+                </span>
+              </p>
+            ) : (
+              article.summary && (
+                <div>
+                  <h2 className='font-satoshi font-bold text-gray-600 text-xl'>
+                    Article <span className='blue_gradient'>Summary</span>
+                  </h2>
+                  <div className='summary_box'>
+                    <p className='font-inter font-medium text-sm text-grey-700'>{article.summary}</p>
+                  </div>
+                </div>
+              )
+            )}
+        </div>
     </section>
   )
 }
